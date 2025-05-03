@@ -1,10 +1,23 @@
-import { Button } from "../ui/button"
+import { Logo, AuthComponents, Nav }from "./index"
 
-export const Header = () => {
+const Header = () => {
+
   return (
-    <div>
-      Ajab
-    </div>
+    <header className="w-full min-h-20 bg-orange-500 flex justify-baseline items-center md:w-full ">
+
+      {/* Logo */}
+      <div className='w-full flex justify-center items-center'>
+        <Logo />
+      </div>
+
+      {/* NavBar */}
+      <Nav />
+        
+      {/* Auth Buttons or Profile */}
+      <AuthComponents />
+
+    </header>
   )
 }
 
+export default Header
