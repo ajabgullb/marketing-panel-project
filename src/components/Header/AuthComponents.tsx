@@ -5,7 +5,7 @@ const AuthComponents = () => {
   const navigate = useNavigate()
 
   return (
-    <div className='w-full flex justify-center items-center gap-2'>
+    <div className={`w-1/4 flex justify-center items-center gap-2`}>
       <Button
         className='cursor-pointer'
         onClick={() => navigate("/signup")}
