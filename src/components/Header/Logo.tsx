@@ -4,7 +4,7 @@ const Logo = ({className}: any) => {
   return (
     <div>
       <Link to="/">
-        <div className={`font-bold text-2xl ${className}`}>
+        <div className={`font-bold text-2xl mx-5 sm:text-right ${className}`}>
           Noman<span>Panel</span>
         </div>
       </Link>

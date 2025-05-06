@@ -1,7 +1,7 @@
 
 const Footer = () => {
   return (
-    <div>
+    <div className="absolute bottom-0 m-10 -z-10">
       Footer
     </div>
   )
