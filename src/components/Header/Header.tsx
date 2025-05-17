@@ -7,28 +7,31 @@ const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
 
   return (
-    <header className="w-full min-h-14 sticky flex items-center justify-around sm:justify-around sm:mb-5 sm:pl-20 sm:shadow-xl sm:bg-gray-200">
+    <header className="w-full sm:w-[80%] md:w-[90%] lg:w-[80%] mx-auto sticky sm:my-5 my-2 h-16 flex items-center justify-around bg-white/90 backdrop-blur-sm shadow-md z-50 border-b border-gray-100">
 
-      {/* Logo */}
-      <Logo className='w-full text-[18px] text-shadow-2xs sm:text-2xl sm:'/>
+      <div className="flex items-center sm:gap-24 md:gap-12 lg:gap-24">
+        {/* Logo */}
+        <Logo className={`text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight transform transition-transform duration-300 ease-in-out`} />
 
-      {toggleMenu ? (
-      <X
-        onClick={() => setToggleMenu(!toggleMenu)}
-        className={`cursor-pointer sm:hidden`}
-      />
-      ) : (
-        <Menu 
-          onClick={() => setToggleMenu(!toggleMenu)}
-          className={`cursor-pointer sm:hidden`}
-        />
-      )}
+        {/* Menu Button */}
+        {toggleMenu ? (
+          <X
+            onClick={() => setToggleMenu(!toggleMenu)}
+            className={`text-gray-600 w-6 h-6 cursor-pointer sm:hidden animate-menu-to-x transform transition-all duration-300 ease-in-out`}
+          />
+        ) : (
+          <Menu 
+            onClick={() => setToggleMenu(!toggleMenu)}
+            className={`text-gray-600 w-6 h-6 cursor-pointer sm:hidden animate-x-to-menu transform transition-all duration-300 ease-in-out`}
+          />
+        )}
+      </div>
 
       {/* Mobile Nav Menu */}
-      <nav className={`w-1/2 h-screen ${toggleMenu ? "block" : "hidden"} top-0 left-0 bg-gray-200 flex flex-col justify-between shadow-lg absolute sm:w-3/4 sm:justify-center sm:block sm:h-20 sm:relative sm:shadow-none sm:animate-none sm:grid sm:grid-cols-2 sm:pl-20 sm:gap-24 ${toggleMenu ? "motion-preset-slide-right" : "motion-preset-slide-left"} transition-transform duration-300`}>
+      <nav className={`fixed inset-0 w-[55%] h-screen ${toggleMenu ? "block" : "hidden"} bg-white/95 backdrop-blur-md flex justify-between flex-col shadow-lg absolute sm:w-3/4 md:w-auto md:relative md:inset-auto md:h-auto md:bg-transparent md:backdrop-blur-0 md:shadow-none md:flex md:items-center md:justify-between transition-all duration-300`}>
 
-        <ul className="w-full mt-10 sm:flex sm:my-5">
-          <li className="min-w-15 sm:text-center mx-5 py-2 ease-in-out">
+        <ul className="w-full mt-5 sm:px-20 sm:flex sm:items-center sm:justify-around sm:my-3 md:mt-0 md:px-0 md:mx-4 lg:mx-8">
+          <li className="max-w-15 text-center px-6 py-3 transition-colors duration-200">
             <NavLink to="/home"
               onClick={() => setToggleMenu(!toggleMenu)}
               className={({ isActive }) => (
@@ -36,7 +39,7 @@ const Header = () => {
             )}
             >Home</NavLink>
           </li>
-          <li className="min-w-15 sm:text-center mx-5 py-2 ease-in-out">
+          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
             <NavLink to="/about"
               onClick={() => setToggleMenu(!toggleMenu)}
               className={({ isActive }) => (
@@ -44,7 +47,7 @@ const Header = () => {
             )}
             >About</NavLink>
           </li>
-          <li className="min-w-15 sm:text-center mx-5 py-2 ease-in-out">
+          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
             <NavLink to="/blogs"
               onClick={() => setToggleMenu(!toggleMenu)}
               className={({ isActive }) => (
@@ -52,7 +55,7 @@ const Header = () => {
             )}
             >Blogs</NavLink>
           </li>
-          <li className="min-w-18 sm:text-center mx-5 py-2 ease-in-out">
+          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
             <NavLink to="/services"
               onClick={() => setToggleMenu(!toggleMenu)}
               className={({ isActive }) => (
@@ -60,7 +63,7 @@ const Header = () => {
             )}
             >Services</NavLink>
           </li>
-          <li className="min-w-18 sm:text-center mx-5 py-2 ease-in-out">
+          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
             <NavLink to="/contact"
               onClick={() => setToggleMenu(!toggleMenu)}
               className={({ isActive }) => (
@@ -70,9 +73,10 @@ const Header = () => {
           </li>
         </ul>
 
-        <AuthComponents className="sm:ml-20" />
+        <AuthComponents className="mb-5 sm:ml-24 sm:hidden" />
       </nav>
 
+      <AuthComponents className="hidden md:block" />
     </header>
   )
 }

@@ -4,21 +4,22 @@ import { User } from "lucide-react"
 import { useSelector } from "react-redux"
 
 interface UserState {
-  authStatus: boolean
+  auth: {
+    authStatus: boolean
+  }
 }
 
 const AuthComponents = ({ className }: any) => {
   const navigate = useNavigate()
-  const authStatus = useSelector((state: UserState) => state.authStatus)
+  const authStatus = useSelector((state: UserState) => state.auth.authStatus)
 
-  console.log(authStatus)
   return (
     <div className={`w-full sm:w-1/4 flex items-center justify-center ${className}`}>
       {
         authStatus ? (
           <User
             onClick={() => navigate("/profile")}
-            className="cursor-pointer"
+            className="mb-4 mr-32 sm:m-0 left-0 cursor-pointer"
           />
         ) : (
           <>

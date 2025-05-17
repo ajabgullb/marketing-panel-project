@@ -1,9 +1,10 @@
+import { Container } from "@/components/index"
 
 const Contact = () => {
   return (
-    <div>
+    <Container>
       Contact
-    </div>
+    </Container>
   )
 }
 

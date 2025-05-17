@@ -1,10 +1,10 @@
-import React from 'react'
+import { Container } from "@/components/index"
 
 const Login = () => {
   return (
-    <div>
+    <Container>
       Login
-    </div>
+    </Container>
   )
 }
 

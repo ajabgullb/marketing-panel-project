@@ -1,9 +1,10 @@
+import { Container } from "@/components/index"
 
 const Blogs = () => {
   return (
-    <div>
+    <Container>
       Blogs
-    </div>
+    </Container>
   )
 }
 

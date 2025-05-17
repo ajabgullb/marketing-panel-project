@@ -1,9 +1,11 @@
+import { Container } from "@/components/index"
+
 
 const About = () => {
   return (
-    <div>
+    <Container>
       About
-    </div>
+    </Container>
   )
 }
 
