@@ -1,9 +1,9 @@
-import { Container } from "@/components/index"
+import { Container, SignupForm } from "@/components/index"
 
 const Signup = () => {
   return (
     <Container>
-      Signup
+      <SignupForm />
     </Container>
   )
 }

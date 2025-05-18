@@ -1,9 +1,9 @@
-import { Container } from "@/components/index"
+import { Container, LoginForm } from "@/components/index"
 
 const Login = () => {
   return (
     <Container>
-      Login
+      <LoginForm />
     </Container>
   )
 }
