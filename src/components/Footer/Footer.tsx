@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white/90 text-gray-600 w-full mt-20 bottom-10">
+    <footer className="bg-white/90 text-gray-600 w-full mt-auto">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -34,11 +34,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><Link to="/home" className="hover:text-gray-900 transition-colors text-sm">Home</Link></li>
-              <li><Link to="/about" className="hover:text-gray-900 transition-colors text-sm">About Us</Link></li>
-              <li><Link to="/blogs" className="hover:text-gray-900 transition-colors text-sm">Blogs</Link></li>
-              <li><Link to="/services" className="hover:text-gray-900 transition-colors text-sm">Services</Link></li>
-              <li><Link to="/contact" className="hover:text-gray-900 transition-colors text-sm">Contact</Link></li>
+              <li><Link to="/home" className="hover:text-black transition-colors text-sm">Home</Link></li>
+              <li><Link to="/about" className="hover:text-black transition-colors text-sm">About Us</Link></li>
+              <li><Link to="/blogs" className="hover:text-black transition-colors text-sm">Blogs</Link></li>
+              <li><Link to="/services" className="hover:text-black transition-colors text-sm">Services</Link></li>
+              <li><Link to="/contact" className="hover:text-black transition-colors text-sm">Contact</Link></li>
             </ul>
           </div>
 
@@ -46,11 +46,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Our Services</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-gray-900 transition-colors text-sm">SEO Optimization</a></li>
-              <li><a href="#" className="hover:text-gray-900 transition-colors text-sm">Social Media Marketing</a></li>
-              <li><a href="#" className="hover:text-gray-900 transition-colors text-sm">Content Marketing</a></li>
-              <li><a href="#" className="hover:text-gray-900 transition-colors text-sm">Email Marketing</a></li>
-              <li><a href="#" className="hover:text-gray-900 transition-colors text-sm">PPC Advertising</a></li>
+              <li><a href="#" className="hover:text-black transition-colors text-sm">SEO Optimization</a></li>
+              <li><a href="#" className="hover:text-black transition-colors text-sm">Social Media Marketing</a></li>
+              <li><a href="#" className="hover:text-black transition-colors text-sm">Content Marketing</a></li>
+              <li><a href="#" className="hover:text-black transition-colors text-sm">Email Marketing</a></li>
+              <li><a href="#" className="hover:text-black transition-colors text-sm">PPC Advertising</a></li>
             </ul>
           </div>
 

@@ -1,84 +1,155 @@
-import { useState } from "react";
-import { Logo, AuthComponents }from "./index"
-import { NavLink } from "react-router-dom"
-import { Menu, X } from "lucide-react";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import Logo from './Logo';
+import AuthComponents from './AuthComponents';
+
+const navLinks = [
+  { name: 'Home', path: '/home' },
+  { name: 'About', path: '/about' },
+  { name: 'Blogs', path: '/blogs' },
+  { name: 'Services', path: '/services' },
+  { name: 'Contact', path: '/contact' },
+];
 
 const Header = () => {
-  const [toggleMenu, setToggleMenu] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: -20, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
 
   return (
-    <header className="w-full sm:w-[80%] md:w-[90%] lg:w-[80%] mx-auto sticky sm:my-5 my-2 h-16 flex items-center justify-around bg-white/90 backdrop-blur-sm shadow-md z-50 border-b border-gray-100">
+    <motion.header 
+      className="w-full bg-white shadow-sm sticky top-0 z-50"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <motion.div 
+            className="flex-shrink-0"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+          >
+            <Logo />
+          </motion.div>
 
-      <div className="flex items-center sm:gap-24 md:gap-12 lg:gap-24">
-        {/* Logo */}
-        <Logo className={`text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight transform transition-transform duration-300 ease-in-out`} />
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            <motion.ul 
+              className="flex space-x-8"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {navLinks.map((link) => (
+                <motion.li key={link.name} variants={item}>
+                  <NavLink
+                    to={link.path}
+                    className={({ isActive }) =>
+                      `px-3 py-2 text-sm font-medium transition-colors ${
+                        isActive 
+                          ? 'text-black font-semibold border-b-2 border-black' 
+                          : 'text-gray-600 hover:text-black'
+                      }`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </nav>
 
-        {/* Menu Button */}
-        {toggleMenu ? (
-          <X
-            onClick={() => setToggleMenu(!toggleMenu)}
-            className={`text-gray-600 w-6 h-6 cursor-pointer sm:hidden animate-menu-to-x transform transition-all duration-300 ease-in-out`}
-          />
-        ) : (
-          <Menu 
-            onClick={() => setToggleMenu(!toggleMenu)}
-            className={`text-gray-600 w-6 h-6 cursor-pointer sm:hidden animate-x-to-menu transform transition-all duration-300 ease-in-out`}
-          />
-        )}
+          {/* Auth Buttons - Desktop */}
+          <div className="hidden md:flex items-center ml-6">
+            <AuthComponents className="space-x-2" />
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-black focus:outline-none"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? (
+                <X className="block h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="block h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Nav Menu */}
-      <nav className={`fixed inset-0 w-[55%] h-screen ${toggleMenu ? "block" : "hidden"} bg-white/95 backdrop-blur-md flex justify-between flex-col shadow-lg absolute sm:w-3/4 md:w-auto md:relative md:inset-auto md:h-auto md:bg-transparent md:backdrop-blur-0 md:shadow-none md:flex md:items-center md:justify-between transition-all duration-300`}>
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute left-0 right-0 bg-white shadow-lg z-40"
+            style={{ top: '4rem' }}
+          >
+            <motion.div 
+              className="px-2 pt-2 pb-4 space-y-1 sm:px-3"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {navLinks.map((link) => (
+                <motion.div key={`mobile-${link.name}`} variants={item}>
+                  <NavLink
+                    to={link.path}
+                    onClick={toggleMenu}
+                    className={({ isActive }) =>
+                      `block px-3 py-3 rounded-md text-base font-medium ${
+                        isActive 
+                          ? 'bg-gray-100 text-black' 
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-black'
+                      }`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                </motion.div>
+              ))}
+              <div className="pt-2 pb-2 border-t border-gray-200">
+                <div className="mt-2 space-y-2 px-2">
+                  <AuthComponents className="flex flex-col space-y-2" />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  );
+};
 
-        <ul className="w-full mt-5 sm:px-20 sm:flex sm:items-center sm:justify-around sm:my-3 md:mt-0 md:px-0 md:mx-4 lg:mx-8">
-          <li className="max-w-15 text-center px-6 py-3 transition-colors duration-200">
-            <NavLink to="/home"
-              onClick={() => setToggleMenu(!toggleMenu)}
-              className={({ isActive }) => (
-              isActive ? "text-gray-600 font-bold" : "md:hover:font-bold md:hover:text-gray-600 text-shadow-2xs"
-            )}
-            >Home</NavLink>
-          </li>
-          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
-            <NavLink to="/about"
-              onClick={() => setToggleMenu(!toggleMenu)}
-              className={({ isActive }) => (
-              isActive ? "text-gray-600 font-bold" : "md:hover:font-bold md:hover:text-gray-600 text-shadow-2xs"
-            )}
-            >About</NavLink>
-          </li>
-          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
-            <NavLink to="/blogs"
-              onClick={() => setToggleMenu(!toggleMenu)}
-              className={({ isActive }) => (
-              isActive ? "text-gray-600 font-bold" : "md:hover:font-bold md:hover:text-gray-600 text-shadow-2xs"
-            )}
-            >Blogs</NavLink>
-          </li>
-          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
-            <NavLink to="/services"
-              onClick={() => setToggleMenu(!toggleMenu)}
-              className={({ isActive }) => (
-              isActive ? "text-gray-600 font-bold" : "md:hover:font-bold md:hover:text-gray-600 text-shadow-2xs"
-            )}
-            >Services</NavLink>
-          </li>
-          <li className="max-w-18 text-center px-6 py-3 transition-colors duration-200">
-            <NavLink to="/contact"
-              onClick={() => setToggleMenu(!toggleMenu)}
-              className={({ isActive }) => (
-              isActive ? "text-gray-600 font-bold" : "md:hover:font-bold md:hover:text-gray-600 text-shadow-2xs"
-            )}
-            >Contact</NavLink>
-          </li>
-        </ul>
-
-        <AuthComponents className="mb-5 sm:ml-24 sm:hidden" />
-      </nav>
-
-      <AuthComponents className="hidden md:block" />
-    </header>
-  )
-}
-
-export default Header
+export default Header;
