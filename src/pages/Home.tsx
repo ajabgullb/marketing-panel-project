@@ -1,9 +1,9 @@
-import { Container } from "@/components/index"
+import { Container, Home as HomeComponent } from "@/components/index"
 
 const Home = () => {
   return (
     <Container>
-      Home
+      <HomeComponent />
     </Container>
   )
 }

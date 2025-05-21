@@ -27,7 +27,7 @@ const AuthComponents = ({ className }: any) => {
         <>
           <Button
             variant="ghost"
-            className="text-gray-700 hover:bg-gray-100 hover:text-black mx-1 cursor-pointer"
+            className="text-gray-700 hover:bg-gray-100 border hover:text-black mx-1 cursor-pointer"
             onClick={() => navigate("/signup")}
           >
             Sign up
