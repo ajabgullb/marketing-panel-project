@@ -43,9 +43,9 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="relative flex items-center justify-between h-16">
+          {/* Logo - Always on the left */}
           <motion.div 
             className="flex-shrink-0"
             initial={{ scale: 0.8, opacity: 0 }}
@@ -55,14 +55,15 @@ const Header = () => {
             <Logo />
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <motion.ul 
-              className="flex space-x-8"
-              variants={container}
-              initial="hidden"
-              animate="show"
-            >
+          {/* Desktop Navigation - Center on desktop */}
+          <div className="hidden md:flex-1 md:flex md:justify-center">
+            <nav className="flex">
+              <motion.ul 
+                className="flex space-x-4 lg:space-x-8"
+                variants={container}
+                initial="hidden"
+                animate="show"
+              >
               {navLinks.map((link) => (
                 <motion.li key={link.name} variants={item}>
                   <NavLink
@@ -79,11 +80,12 @@ const Header = () => {
                   </NavLink>
                 </motion.li>
               ))}
-            </motion.ul>
-          </nav>
+              </motion.ul>
+            </nav>
+          </div>
 
           {/* Auth Buttons - Desktop */}
-          <div className="hidden md:flex items-center ml-6">
+          <div className="hidden md:flex items-center">
             <AuthComponents className="space-x-2" />
           </div>
 

@@ -1,9 +1,9 @@
-import { Container } from "@/components/index"
+import { Container, Contact as ContactComponent } from "@/components/index"
 
 const Contact = () => {
   return (
     <Container>
-      Contact
+      <ContactComponent />
     </Container>
   )
 }

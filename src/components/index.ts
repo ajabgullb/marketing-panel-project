@@ -3,6 +3,7 @@ import Footer from "./Footer/Footer"
 import Container from "./Container/Container"
 import SignupForm from "./SignupForm/SignupForm"
 import LoginForm from "./LoginForm/LoginForm"
+import Contact from "./Contact/Contact"
 
 export {
   Header,
@@ -10,5 +11,6 @@ export {
   Container,
   SignupForm,
   LoginForm,
+  Contact,
 }
 
