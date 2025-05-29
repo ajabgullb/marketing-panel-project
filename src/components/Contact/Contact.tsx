@@ -52,7 +52,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-full bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-black py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -60,43 +60,43 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
           Get in Touch
         </h2>
-        <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+        <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-300 sm:mt-4">
           Have questions? We're here to help. Send us a message and we'll get back to you as soon as possible.
         </p>
         </motion.div>
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div className="bg-gray-800 shadow-xl rounded-2xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Contact Form */}
             <motion.div 
               variants={container}
               initial="hidden"
               animate="show"
-              className="px-6 py-8 sm:p-10"
+              className="px-6 py-8 sm:p-10 bg-gray-800 text-white"
             >
               {submitStatus === 'success' ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-green-50 border border-green-200 rounded-lg p-6 text-center"
+                  className="bg-green-900 border border-green-700 rounded-lg p-6 text-center"
                 >
-                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-                    <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-800">
+                    <svg className="h-6 w-6 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="mt-3 text-lg font-medium text-green-800">Message Sent!</h3>
-                  <p className="mt-2 text-sm text-green-600">
+                  <h3 className="mt-3 text-lg font-medium text-green-300">Message Sent!</h3>
+                  <p className="mt-2 text-sm text-green-400">
                     Thank you for contacting us. We'll get back to you soon!
                   </p>
                   <button
                     onClick={() => setSubmitStatus(null)}
-                    className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer"
+                    className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-100 bg-green-800 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer"
                   >
                     Send another message
                   </button>
@@ -105,7 +105,7 @@ const Contact = () => {
                 <form onSubmit={handleSubmit}>
                   <motion.div variants={item} className="grid grid-cols-1 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-200">
                         Full Name
                       </label>
                       <input
@@ -115,13 +115,13 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:ring-indigo-500 focus:border-indigo-500"
+                        className="mt-1 block w-full border border-gray-600 rounded-md shadow-sm py-3 px-4 bg-gray-700 text-white focus:ring-indigo-500 focus:border-indigo-500 autofill:bg-gray-800 autofill:text-white autofill:shadow-[inset_0_0_0px_1000px_rgb(31,41,55)]" style={{color: 'white', WebkitTextFillColor: 'white'}}
                         placeholder="John Doe"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-200">
                         Email
                       </label>
                       <input
@@ -131,13 +131,13 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:ring-indigo-500 focus:border-indigo-500"
+                        className="mt-1 block w-full border border-gray-600 rounded-md shadow-sm py-3 px-4 bg-gray-700 text-white focus:ring-indigo-500 focus:border-indigo-500 autofill:bg-gray-800 autofill:text-white autofill:shadow-[inset_0_0_0px_1000px_rgb(31,41,55)]" style={{color: 'white', WebkitTextFillColor: 'white'}}
                         placeholder="you@example.com"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-200">
                         Subject
                       </label>
                       <input
@@ -147,13 +147,13 @@ const Contact = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:ring-indigo-500 focus:border-indigo-500"
+                        className="mt-1 block w-full border border-gray-600 rounded-md shadow-sm py-3 px-4 bg-gray-700 text-white focus:ring-indigo-500 focus:border-indigo-500 autofill:bg-gray-800 autofill:text-white autofill:shadow-[inset_0_0_0px_1000px_rgb(31,41,55)]" style={{color: 'white', WebkitTextFillColor: 'white'}}
                         placeholder="How can we help?"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-200">
                         Message
                       </label>
                       <textarea
@@ -163,7 +163,7 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:ring-indigo-500 focus:border-indigo-500"
+                        className="mt-1 block w-full border border-gray-600 rounded-md shadow-sm py-3 px-4 bg-gray-700 text-white focus:ring-indigo-500 focus:border-indigo-500 autofill:bg-gray-800 autofill:text-white autofill:shadow-[inset_0_0_0px_1000px_rgb(31,41,55)]" style={{color: 'white', WebkitTextFillColor: 'white'}}
                         placeholder="Your message here..."
                       />
                     </div>
@@ -174,7 +174,7 @@ const Contact = () => {
                         whileTap={{ scale: 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 cursor-pointer ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                        className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                       >
                         {isSubmitting ? (
                           <>
@@ -202,7 +202,7 @@ const Contact = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-gradient-to-br from-gray-900 to-black px-4 sm:px-6 py-10 sm:py-12 text-white"
+              className="bg-gradient-to-br from-gray-800 to-gray-950 px-4 sm:px-6 py-10 sm:py-12 text-white"
             >
               <div className="max-w-lg mx-auto lg:mx-0 space-y-6 sm:space-y-8">
                 <h3 className="text-2xl font-bold">Contact Information</h3>
@@ -214,8 +214,8 @@ const Contact = () => {
                     transition={{ delay: 0.4 }}
                     className="flex items-start"
                   >
-                    <div className="flex-shrink-0 bg-gray-100 rounded-lg p-2 sm:p-3 mt-1">
-                      <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-gray-900" />
+                    <div className="flex-shrink-0 bg-gray-700 rounded-lg p-2 sm:p-3 mt-1">
+                      <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-gray-200" />
                     </div>
                     <div className="ml-3 sm:ml-4">
                       <h4 className="font-medium text-base sm:text-lg">Our Location</h4>
@@ -229,8 +229,8 @@ const Contact = () => {
                     transition={{ delay: 0.5 }}
                     className="flex items-start"
                   >
-                    <div className="flex-shrink-0 bg-gray-100 rounded-lg p-2 sm:p-3 mt-1">
-                      <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-gray-900" />
+                    <div className="flex-shrink-0 bg-gray-700 rounded-lg p-2 sm:p-3 mt-1">
+                      <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-gray-200" />
                     </div>
                     <div className="ml-3 sm:ml-4">
                       <h4 className="font-medium text-base sm:text-lg">Email Us</h4>
@@ -244,8 +244,8 @@ const Contact = () => {
                     transition={{ delay: 0.6 }}
                     className="flex items-start"
                   >
-                    <div className="flex-shrink-0 bg-gray-100 rounded-lg p-2 sm:p-3 mt-1">
-                      <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-gray-900" />
+                    <div className="flex-shrink-0 bg-gray-700 rounded-lg p-2 sm:p-3 mt-1">
+                      <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-gray-200" />
                     </div>
                     <div className="ml-3 sm:ml-4">
                       <h4 className="font-medium text-base sm:text-lg">Call Us</h4>
@@ -273,7 +273,7 @@ const Contact = () => {
                         href="#"
                         whileHover={{ y: -3, scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-gray-700 transition-colors"
+                        className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-gray-600 transition-colors"
                         aria-label={social.name}
                       >
                         {social.icon}

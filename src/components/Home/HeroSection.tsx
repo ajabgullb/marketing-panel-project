@@ -155,7 +155,7 @@ const HeroSection = () => {
             >
               <Link
                 to="/services"
-                className="group inline-flex items-center justify-center gap-2 bg-gray-700 text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:bg-gray-600 border border-gray-600 no-underline"
+                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl no-underline"
               >
                 Get Started
                 <motion.span
