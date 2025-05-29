@@ -5,7 +5,7 @@ interface IContainer {
 
 const Container = ({ children }: IContainer) => {
   return (
-    <div className='mx-10 my-5'>
+    <div className='mx-8 my-1'>
       {children}
     </div>
   )
