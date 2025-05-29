@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <motion.header 
-      className="w-full bg-white shadow-sm sticky top-0 z-50"
+      className="w-full bg-gray-900 shadow-sm sticky top-0 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -71,8 +71,8 @@ const Header = () => {
                     className={({ isActive }) =>
                       `px-3 py-2 text-sm font-medium transition-colors ${
                         isActive 
-                          ? 'text-black font-semibold border-b-2 border-black' 
-                          : 'text-gray-600 hover:text-black'
+                          ? 'text-white font-semibold border-b-2 border-white' 
+                          : 'text-gray-400 hover:text-white'
                       }`
                     }
                   >
@@ -93,7 +93,7 @@ const Header = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-black focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -115,7 +115,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute left-0 right-0 bg-white shadow-lg z-40"
+            className="md:hidden absolute left-0 right-0 bg-gray-900 shadow-lg z-40"
             style={{ top: '4rem' }}
           >
             <motion.div 
@@ -132,8 +132,8 @@ const Header = () => {
                     className={({ isActive }) =>
                       `block px-3 py-3 rounded-md text-base font-medium ${
                         isActive 
-                          ? 'bg-gray-100 text-black' 
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-black'
+                          ? 'bg-gray-900 text-white' 
+                          : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                       }`
                     }
                   >
@@ -141,7 +141,7 @@ const Header = () => {
                   </NavLink>
                 </motion.div>
               ))}
-              <div className="pt-2 pb-2 border-t border-gray-200">
+              <div className="pt-2 pb-2 border-t border-gray-800">
                 <div className="mt-2 space-y-2 px-2">
                   <AuthComponents className="flex flex-col space-y-2" />
                 </div>

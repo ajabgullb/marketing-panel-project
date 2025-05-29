@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+// Apply dark mode to the HTML element
+document.documentElement.classList.add('dark')
+
 import App from './App.tsx'
 import { Home, About, Blogs, Services, Contact, Login, Signup } from "./pages/index.ts"
 import { Provider } from 'react-redux'

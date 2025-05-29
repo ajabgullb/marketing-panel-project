@@ -73,12 +73,12 @@ const HeroSection = () => {
   if (!isMounted) return null;
 
   return (
-    <section className="relative w-full overflow-hidden bg-white text-black min-h-screen flex items-center">
+    <section className="relative w-full overflow-hidden bg-black text-white min-h-screen flex items-center">
       {/* Background grid pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" 
           style={{
-            backgroundImage: 'linear-gradient(to right, #000000 1px, transparent 1px), linear-gradient(to bottom, #000000 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
             backgroundSize: '40px 40px',
           }}
         />
@@ -88,7 +88,7 @@ const HeroSection = () => {
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full border border-black/10"
+          className="absolute rounded-full border border-white/10"
           style={{
             width: `${(i + 1) * 100}px`,
             height: `${(i + 1) * 100}px`,
@@ -120,7 +120,7 @@ const HeroSection = () => {
             animate="visible"
           >
             <motion.div variants={textItem}>
-              <span className="inline-block px-4 py-1.5 border border-black/20 rounded-full text-sm font-medium tracking-wide">
+              <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-sm font-medium tracking-wide">
                 TRUSTED MARKETING PLATFORM
               </span>
             </motion.div>
@@ -143,19 +143,19 @@ const HeroSection = () => {
             </div>
 
             <motion.p 
-              className="text-lg text-black/80 max-w-lg mx-auto md:mx-0"
+              className="text-lg text-gray-300 max-w-lg mx-auto md:mx-0"
               variants={textItem}
             >
               Leverage our powerful platform to transform your digital presence with elegant, minimalist design and AI-powered marketing tools.
             </motion.p>
             
             <motion.div 
-              className="flex justify-center md:justify-start pt-4"
+              className="flex justify-center md:justify-start pt-3"
               variants={textItem}
             >
               <Link
                 to="/services"
-                className="group inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:bg-gray-800 no-underline"
+                className="group inline-flex items-center justify-center gap-2 bg-gray-700 text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:bg-gray-600 border border-gray-600 no-underline"
               >
                 Get Started
                 <motion.span
@@ -168,7 +168,7 @@ const HeroSection = () => {
             </motion.div>
 
             <motion.div 
-              className="flex items-center justify-center md:justify-start gap-3 pt-8"
+              className="flex items-center justify-center md:justify-start gap-3 pt-5 pb-16 md:pb-0"
               variants={textItem}
             >
               <div className="flex -space-x-3">
@@ -184,8 +184,8 @@ const HeroSection = () => {
                   </motion.div>
                 ))}
               </div>
-              <div className="text-sm text-black/70">
-                <p>Trusted by <span className="font-semibold text-black">500+</span> businesses</p>
+              <div className="text-sm text-gray-300">
+                <p>Trusted by <span className="font-semibold text-white">500+</span> businesses</p>
               </div>
             </motion.div>
           </motion.div>
@@ -199,11 +199,11 @@ const HeroSection = () => {
           >
             {/* Main dashboard mockup */}
             <motion.div 
-              className="relative z-10 bg-gradient-to-br from-gray-100 to-white p-1 rounded-2xl shadow-2xl border border-black/10 overflow-hidden"
+              className="relative z-10 bg-gradient-to-br from-gray-800 to-gray-900 p-1 rounded-2xl shadow-2xl border border-gray-700 overflow-hidden"
               animate={floatingAnimation(0)}
             >
               {/* Dashboard content */}
-              <div className="bg-white rounded-xl overflow-hidden p-4">
+              <div className="bg-gray-800 rounded-xl overflow-hidden p-4">
                 {/* Header bar */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex space-x-2">
@@ -211,22 +211,23 @@ const HeroSection = () => {
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   </div>
-                  <div className="h-4 w-24 bg-black/10 rounded-full"></div>
+                  <div className="h-4 w-24 bg-gray-600 rounded-full"></div>
                 </div>
                 
                 {/* Dashboard grid */}
+                {/* Top row */}
                 <div className="grid grid-cols-3 gap-3 mb-3">
                   <motion.div 
-                    className="col-span-2 h-40 bg-black/5 rounded-lg p-3"
+                    className="col-span-2 h-40 bg-gray-700 rounded-lg p-3"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
-                    <div className="h-4 w-20 bg-black/20 rounded-full mb-2"></div>
+                    <div className="h-4 w-20 bg-gray-600 rounded-full mb-2"></div>
                     <div className="flex items-end h-24 pt-2">
                       {[...Array(12)].map((_, i) => (
                         <motion.div 
                           key={i} 
-                          className="flex-1 bg-black/20 mx-0.5 rounded-t"
+                          className="flex-1 bg-gray-500 mx-0.5 rounded-t"
                           style={{ height: `${Math.random() * 100}%` }}
                           initial={{ height: 0 }}
                           animate={{ height: `${Math.random() * 100}%` }}
@@ -236,52 +237,53 @@ const HeroSection = () => {
                     </div>
                   </motion.div>
                   <motion.div 
-                    className="h-40 bg-black/5 rounded-lg p-3 flex flex-col justify-between"
+                    className="h-40 bg-gray-700 rounded-lg p-3 flex flex-col justify-between"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
-                    <div className="h-4 w-12 bg-black/20 rounded-full"></div>
-                    <div className="w-16 h-16 rounded-full bg-black/10 mx-auto flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-black/20"></div>
+                    <div className="h-4 w-12 bg-gray-600 rounded-full"></div>
+                    <div className="w-16 h-16 rounded-full bg-gray-600 mx-auto flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-gray-500"></div>
                     </div>
-                    <div className="h-3 w-full bg-black/10 rounded-full"></div>
+                    <div className="h-3 w-full bg-gray-600 rounded-full"></div>
                   </motion.div>
                 </div>
                 
+                {/* Bottom row */}
                 <div className="grid grid-cols-3 gap-3">
                   <motion.div 
-                    className="h-32 bg-black/5 rounded-lg p-3"
+                    className="h-32 bg-gray-700 rounded-lg p-3"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
-                    <div className="h-3 w-12 bg-black/20 rounded-full mb-2"></div>
+                    <div className="h-3 w-12 bg-gray-600 rounded-full mb-2"></div>
                     <div className="h-20 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-black/10 flex items-center justify-center">
-                        <div className="w-10 h-10 rounded-full bg-black/20"></div>
+                      <div className="w-16 h-16 rounded-full bg-gray-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-gray-500"></div>
                       </div>
                     </div>
                   </motion.div>
                   <motion.div 
-                    className="h-32 bg-black/5 rounded-lg p-3"
+                    className="h-32 bg-gray-700 rounded-lg p-3"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
-                    <div className="h-3 w-16 bg-black/20 rounded-full mb-2"></div>
+                    <div className="h-3 w-16 bg-gray-600 rounded-full mb-2"></div>
                     <div className="space-y-2 pt-2">
                       {[...Array(4)].map((_, i) => (
-                        <div key={i} className="h-3 bg-black/10 rounded-full"></div>
+                        <div key={i} className="h-3 bg-gray-600 rounded-full"></div>
                       ))}
                     </div>
                   </motion.div>
                   <motion.div 
-                    className="h-32 bg-black/5 rounded-lg p-3"
+                    className="h-32 bg-gray-700 rounded-lg p-3"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
-                    <div className="h-3 w-14 bg-black/20 rounded-full mb-2"></div>
+                    <div className="h-3 w-14 bg-gray-600 rounded-full mb-2"></div>
                     <div className="h-20 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-black/10 flex items-center justify-center">
-                        <div className="w-8 h-8 rounded-full bg-black/20"></div>
+                      <div className="w-12 h-12 rounded-full bg-gray-600 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full bg-gray-500"></div>
                       </div>
                     </div>
                   </motion.div>
@@ -291,7 +293,7 @@ const HeroSection = () => {
             
             {/* Decorative elements */}
             <motion.div 
-              className="absolute -top-10 -left-10 w-40 h-40 bg-black/5 rounded-full mix-blend-overlay filter blur-xl"
+              className="absolute -top-10 -left-10 w-40 h-40 bg-white/5 rounded-full mix-blend-overlay filter blur-xl"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.1, 0.2, 0.1],
@@ -303,7 +305,7 @@ const HeroSection = () => {
               }}
             />
             <motion.div 
-              className="absolute -bottom-12 -right-12 w-56 h-56 bg-black/5 rounded-full mix-blend-overlay filter blur-xl"
+              className="absolute -bottom-12 -right-12 w-56 h-56 bg-white/5 rounded-full mix-blend-overlay filter blur-xl"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [0.1, 0.15, 0.1],
@@ -318,12 +320,12 @@ const HeroSection = () => {
             
             {/* Floating small elements */}
             <motion.div 
-              className="absolute top-20 -right-6 w-12 h-12 bg-black rounded-lg shadow-lg"
+              className="absolute top-20 -right-6 w-12 h-12 bg-gray-700 rounded-lg shadow-lg"
               animate={floatingAnimation(1.5)}
               style={{ rotate: '10deg' }}
             />
             <motion.div 
-              className="absolute bottom-20 -left-6 w-8 h-8 bg-black rounded-full shadow-lg"
+              className="absolute bottom-20 -left-6 w-8 h-8 bg-gray-700 rounded-full shadow-lg"
               animate={floatingAnimation(2)}
             />
           </motion.div>
@@ -334,7 +336,7 @@ const HeroSection = () => {
       {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-black"
+          className="absolute rounded-full bg-gray-400"
           style={{
             width: Math.random() * 4 + 1,
             height: Math.random() * 4 + 1,
@@ -358,19 +360,19 @@ const HeroSection = () => {
       
       {/* Scroll indicator */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center md:bottom-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
       >
-        <span className="text-xs text-black/50 mb-2">Scroll to explore</span>
+        <span className="text-xs text-white/50 mb-2">Scroll to explore</span>
         <motion.div 
-          className="w-6 h-10 border-2 border-black/20 rounded-full flex justify-center pt-2"
+          className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2"
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           <motion.div 
-            className="w-1.5 h-1.5 bg-black rounded-full"
+            className="w-1.5 h-1.5 bg-white rounded-full"
             animate={{ y: [0, 3, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />

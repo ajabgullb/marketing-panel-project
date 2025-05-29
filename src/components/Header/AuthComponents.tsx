@@ -18,22 +18,22 @@ const AuthComponents = ({ className }: any) => {
       {authStatus ? (
         <button
           onClick={() => navigate("/profile")}
-          className="p-2 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+          className="p-2 rounded-full hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
           aria-label="Profile"
         >
-          <User className="w-5 h-5 text-gray-700" />
+          <User className="w-5 h-5 text-gray-300 cursor-pointer" />
         </button>
       ) : (
         <>
           <Button
             variant="ghost"
-            className="text-gray-700 hover:bg-gray-100 border hover:text-black mx-1 cursor-pointer"
+            className="text-gray-300 hover:bg-gray-800 border border-gray-700 hover:text-white mx-1 cursor-pointer"
             onClick={() => navigate("/signup")}
           >
             Sign up
           </Button>
           <Button
-            className="bg-black text-white hover:bg-gray-800 mx-1 cursor-pointer"
+            className="bg-gray-700 text-white hover:bg-gray-600 mx-1 cursor-pointer"
             onClick={() => navigate("/login")}
           >
             Log in
