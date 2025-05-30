@@ -73,7 +73,7 @@ const HeroSection = () => {
   if (!isMounted) return null;
 
   return (
-    <section className="relative w-full overflow-hidden bg-black text-white min-h-screen flex items-center">
+    <section className="relative w-full overflow-hidden bg-black text-white min-h-[89vh] flex items-start pt-8 md:pt-16">
       {/* Background grid pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" 
@@ -110,7 +110,7 @@ const HeroSection = () => {
         />
       ))}
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-20 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
           <motion.div 
@@ -153,18 +153,23 @@ const HeroSection = () => {
               className="flex justify-center md:justify-start pt-3"
               variants={textItem}
             >
-              <Link
-                to="/services"
-                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl no-underline"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Get Started
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                <Link
+                  to="/services"
+                  className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl no-underline"
                 >
-                  <ArrowRightIcon className="w-5 h-5" />
-                </motion.span>
-              </Link>
+                  Get Started
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                  >
+                    <ArrowRightIcon className="w-5 h-5" />
+                  </motion.span>
+                </Link>
+              </motion.div>
             </motion.div>
 
             <motion.div 
