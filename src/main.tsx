@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import './styles/input-fix.css' // Fix for input fields turning white on autofill
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 // Apply dark mode to the HTML element

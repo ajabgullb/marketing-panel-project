@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from '@heroicons/react/24/solid';
-import { useNavigate } from 'react-router-dom';
 
 interface TestimonialType {
   id: number;
@@ -68,7 +67,6 @@ const Testimonials = () => {
   const [startX, setStartX] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate()
 
   useEffect(() => {
     setIsMounted(true);
@@ -215,7 +213,7 @@ const Testimonials = () => {
         <div className="relative max-w-5xl mx-auto">
           <div 
             ref={carouselRef}
-            className="overflow-hidden relative min-h-[400px] sm:min-h-[350px]"
+            className="overflow-hidden relative min-h-[500px] sm:min-h-[450px]"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -232,8 +230,8 @@ const Testimonials = () => {
                 className="absolute w-full"
               >
                 <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/20 max-w-4xl mx-auto transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl">
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                    {/* Avatar on the left */}
+                  <div className="flex flex-col items-center gap-6">
+                    {/* Avatar at the top for mobile, left for desktop */}
                     <div className="flex-shrink-0 relative">
                       <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white/20 shadow-lg relative z-10">
                         <img 
@@ -256,25 +254,27 @@ const Testimonials = () => {
                       </motion.div>
                     </div>
                     
-                    {/* Content to the right of avatar */}
-                    <div className="flex-1 text-center md:text-left">
-                      {/* Quote with decorative elements */}
-                      <div className="relative">
-                        <div className="absolute -top-6 -left-2 text-4xl text-indigo-400 opacity-50">❝</div>
-                        <p className="text-lg italic mb-4 text-indigo-100 relative z-10">{testimonials[currentIndex].testimonial}</p>
-                        <div className="absolute -bottom-6 -right-2 text-4xl text-indigo-400 opacity-50">❞</div>
+                    {/* Name at the top after picture for mobile */}
+                    <div className="flex-1 w-full text-center">
+                      {/* Name */}
+                      <h4 className="text-xl font-bold text-white">{testimonials[currentIndex].name}</h4>
+                      
+                      {/* Designation and company */}
+                      <p className="text-indigo-200 text-sm mt-1">{testimonials[currentIndex].position}, {testimonials[currentIndex].company}</p>
+                      
+                      {/* Star review */}
+                      <div className="flex justify-center mt-2 mb-4">
+                        {renderStars(testimonials[currentIndex].rating)}
                       </div>
                       
                       {/* Divider */}
-                      <div className="h-px w-16 bg-indigo-400/30 my-4 mx-auto md:mx-0"></div>
+                      <div className="h-px w-16 bg-indigo-400/30 my-4 mx-auto"></div>
                       
-                      {/* Name, position and stars */}
-                      <div className="mt-4">
-                        <h4 className="text-xl font-bold text-white">{testimonials[currentIndex].name}</h4>
-                        <p className="text-indigo-200 text-sm">{testimonials[currentIndex].position}, {testimonials[currentIndex].company}</p>
-                        <div className="flex justify-center md:justify-start mt-2">
-                          {renderStars(testimonials[currentIndex].rating)}
-                        </div>
+                      {/* Testimonial text */}
+                      <div className="relative">
+                        <div className="absolute -top-6 -left-2 text-4xl text-indigo-400 opacity-50">❝</div>
+                        <p className="text-lg italic text-indigo-100 relative z-10">{testimonials[currentIndex].testimonial}</p>
+                        <div className="absolute -bottom-6 -right-2 text-4xl text-indigo-400 opacity-50">❞</div>
                       </div>
                     </div>
                   </div>
@@ -317,30 +317,6 @@ const Testimonials = () => {
             />
           ))}
         </div>
-
-        {/* Call to action */}
-        <motion.div 
-          className="mt-16 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <p className="text-indigo-200 mb-6 max-w-2xl mx-auto">Join hundreds of satisfied customers who have transformed their marketing strategy with our platform.</p>
-          <motion.button
-            className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(129, 140, 248, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate("/services")}
-          >
-            Browse Our Services
-            <motion.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-            >
-              →
-            </motion.span>
-          </motion.button>
-        </motion.div>
       </div>
 
       {/* Decorative elements */}

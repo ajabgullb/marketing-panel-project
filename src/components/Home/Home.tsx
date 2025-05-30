@@ -1,5 +1,6 @@
-import FeaturedSection from "./FeaturedSection"
-import HeroSection from "./HeroSection"
+import ContactSection from "./Contact"
+import FeaturedSection from "./Featured"
+import HeroSection from "./Hero"
 import Testimonials from "./Testimonials"
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <HeroSection />
       <FeaturedSection />
       <Testimonials />
+      <ContactSection />
     </div>
   )
 }
