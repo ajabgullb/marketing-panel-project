@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface FeatureItem {
   id: number;
@@ -45,6 +46,7 @@ const FeatureCard: React.FC<{ feature: FeatureItem; isSelected: boolean; onClick
   isSelected, 
   onClick 
 }) => {
+
   return (
     <motion.div
       onClick={onClick}
@@ -73,6 +75,7 @@ const FeatureCard: React.FC<{ feature: FeatureItem; isSelected: boolean; onClick
 const FeaturedSection = () => {
   const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsMounted(true);
@@ -206,6 +209,7 @@ const FeaturedSection = () => {
           className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigate('/services')}
         >
           Explore All Features
           <motion.span

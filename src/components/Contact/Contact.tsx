@@ -52,7 +52,17 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-full bg-black py-6 px-4 sm:px-6 lg:px-8">
+    <div className="relative w-full overflow-hidden bg-black py-6 px-4 sm:px-6 lg:px-8">
+      {/* Background grid pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" 
+          style={{
+            backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -70,14 +80,14 @@ const Contact = () => {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="bg-gray-800 shadow-xl rounded-2xl overflow-hidden">
+        <div className="bg-gray-800/80 backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden border border-gray-700">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Contact Form */}
             <motion.div 
               variants={container}
               initial="hidden"
               animate="show"
-              className="px-6 py-8 sm:p-10 bg-gray-800 text-white"
+              className="px-6 py-8 sm:p-10 bg-gray-800/90 text-white relative z-10"
             >
               {submitStatus === 'success' ? (
                 <motion.div 
@@ -202,7 +212,7 @@ const Contact = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-gradient-to-br from-gray-800 to-gray-950 px-4 sm:px-6 py-10 sm:py-12 text-white"
+              className="bg-gradient-to-br from-gray-800/90 to-gray-950/90 px-4 sm:px-6 py-10 sm:py-12 text-white relative z-10"
             >
               <div className="max-w-lg mx-auto lg:mx-0 space-y-6 sm:space-y-8">
                 <h3 className="text-2xl font-bold">Contact Information</h3>

@@ -190,7 +190,7 @@ const HeroSection = () => {
                 ))}
               </div>
               <div className="text-sm text-gray-300">
-                <p>Trusted by <span className="font-semibold text-white">500+</span> businesses</p>
+                <p>Trusted by <span className="font-semibold text-white">100+</span> businesses</p>
               </div>
             </motion.div>
           </motion.div>
