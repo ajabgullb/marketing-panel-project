@@ -578,10 +578,10 @@ const ContactSection = () => {
               {/* Location markers with labels */}
               <div className="grid grid-cols-2 gap-3 mt-4">
                 {[
-                  { city: 'New York', continent: 'North America', color: 'text-blue-400' },
-                  { city: 'London', continent: 'Europe', color: 'text-purple-400' },
-                  { city: 'Tokyo', continent: 'Asia', color: 'text-cyan-400' },
-                  { city: 'Sydney', continent: 'Australia', color: 'text-amber-500' }
+                  { city: 'Lahore', continent: 'Punjab', color: 'text-blue-400' },
+                  { city: 'Islamabad', continent: 'Capital', color: 'text-purple-400' },
+                  { city: 'Karachi', continent: 'Sindh', color: 'text-cyan-400' },
+                  { city: 'Quetta', continent: 'Peshawar', color: 'text-amber-500' }
                 ].map((location, index) => (
                   <motion.div 
                     key={location.city}
@@ -590,7 +590,7 @@ const ContactSection = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
                   >
-                    {location.city === 'Sydney' ? (
+                    {location.city === 'Quetta' ? (
                       <div className="w-2 h-2 rounded-full bg-yellow-400" />
                     ) : (
                       <div className={`w-2 h-2 rounded-full ${location.color.replace('text-', 'bg-')}`} />

@@ -1,10 +1,9 @@
-import { Container } from "@/components/index"
-
+import { Container, About as AboutComponent } from "@/components/index"
 
 const About = () => {
   return (
     <Container>
-      About
+      <AboutComponent />
     </Container>
   )
 }

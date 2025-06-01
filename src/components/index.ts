@@ -5,6 +5,7 @@ import SignupForm from "./SignupForm/SignupForm"
 import LoginForm from "./LoginForm/LoginForm"
 import Contact from "./Contact/Contact"
 import Home from "./Home/Home"
+import About from "./About/About"
 
 export {
   Header,
@@ -14,5 +15,5 @@ export {
   LoginForm,
   Contact,
   Home,
+  About,
 }
-
