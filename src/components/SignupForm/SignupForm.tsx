@@ -1,11 +1,11 @@
-
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
 import { z } from 'zod';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
+import { signUp, SignUpCredentials } from '../../lib/auth';
 
 // Define form schema with Zod
 const formSchema = z.object({
@@ -14,7 +14,8 @@ const formSchema = z.object({
     .min(8, { message: 'Password must be at least 8 characters' })
     .regex(/[A-Z]/, { message: 'Must contain at least one uppercase letter' })
     .regex(/[0-9]/, { message: 'Must contain at least one number' }),
-  confirmPassword: z.string()
+  confirmPassword: z.string(),
+  fullName: z.string().min(2, { message: 'Full name is required' })
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"],
@@ -30,32 +31,54 @@ const SignupForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset
+    formState: { errors }
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      fullName: ''
     }
   });
 
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    console.log('Signup successful:', data);
-    setSubmitSuccess(true);
-    setIsSubmitting(false);
-    
-    // Reset form after 2 seconds
-    setTimeout(() => {
-      reset();
+    try {
+      // Sign up with Supabase
+      const credentials: SignUpCredentials = {
+        email: data.email,
+        password: data.password,
+        fullName: data.fullName
+      };
+      
+      const result = await signUp(credentials);
+      console.log('Signup successful:', result);
+      
+      if (result.user) {
+        setSubmitSuccess(true);
+        
+        // Show success message and redirect to login page
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } else {
+        // This shouldn't happen but handle it just in case
+        setError('Something went wrong during signup. Please try again.');
+        setSubmitSuccess(false);
+      }
+    } catch (err: any) {
+      console.error('Signup error:', err);
+      setError(err.message || 'Failed to create account. Please try again.');
       setSubmitSuccess(false);
-    }, 2000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Animation variants
@@ -115,6 +138,7 @@ const SignupForm = () => {
           </div>
           <h2 className="text-2xl font-bold text-white mb-3">Success!</h2>
           <p className="text-gray-400">Your account has been created successfully.</p>
+          <p className="text-gray-400 mt-2">Please check your email to confirm your account.</p>
         </motion.div>
       </motion.div>
     );
@@ -135,6 +159,27 @@ const SignupForm = () => {
       </motion.h1>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        {/* Full Name Field */}
+        <motion.div variants={itemVariants}>
+          <label htmlFor="fullName" className="block text-sm font-medium text-gray-300 mb-2">
+            Full Name
+          </label>
+          <input
+            id="fullName"
+            type="text"
+            {...register('fullName')}
+            className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${
+              errors.fullName ? 'border-red-500' : 'border-gray-700'
+            } text-white placeholder-gray-500`}
+            placeholder="John Doe"
+          />
+          {errors.fullName && (
+            <p className="mt-1 text-sm text-red-400">{errors.fullName.message}</p>
+          )}
+        </motion.div>
+
+
+
         {/* Email Field */}
         <motion.div variants={itemVariants}>
           <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
@@ -210,6 +255,17 @@ const SignupForm = () => {
           </div>
         </motion.div>
 
+        {/* Error message */}
+        {error && (
+          <motion.div
+            className="p-3 mb-4 text-sm text-red-400 bg-red-900/30 rounded-lg"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {error}
+          </motion.div>
+        )}
+
         <motion.div 
           className="text-center text-sm mb-4"
           variants={itemVariants}
@@ -254,14 +310,18 @@ const SignupForm = () => {
             <span className="px-2 bg-black text-gray-400">Or continue with</span>
           </div>
         </motion.div>
-        
+
         <motion.div
           className="mt-4"
           variants={itemVariants}
         >
           <motion.button
             type="button"
-            onClick={() => console.log('Google sign-in clicked')}
+            onClick={() => {
+              // Note: Supabase OAuth will be implemented in future updates
+              console.log('Google sign-in clicked');
+              setError('Google sign-in will be available soon.');
+            }}
             className="w-full flex items-center justify-center py-3 px-4 rounded-lg font-medium text-gray-800 bg-white hover:bg-gray-100 transition-colors shadow-lg cursor-pointer"
             variants={buttonVariants}
             initial="initial"

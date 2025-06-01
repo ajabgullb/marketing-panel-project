@@ -3,8 +3,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
 import { z } from 'zod';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
+import { signIn, SignInCredentials } from '../../lib/auth';
 
 // Define form schema with Zod
 const formSchema = z.object({
@@ -25,8 +26,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset
+    formState: { errors }
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,21 +35,33 @@ const LoginForm = () => {
     }
   });
 
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    console.log('Form submitted:', data);
-    setSubmitSuccess(true);
-    setIsSubmitting(false);
-    
-    // Reset form after 2 seconds
-    setTimeout(() => {
-      reset();
+    try {
+      const credentials: SignInCredentials = {
+        email: data.email,
+        password: data.password
+      };
+      
+      await signIn(credentials);
+      
+      // If we got here, the login was successful and the Redux store has been updated
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1000); // Reduced to 1 second for better UX
+      
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in. Please check your credentials.');
       setSubmitSuccess(false);
-    }, 2000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Animation variants
@@ -183,6 +195,17 @@ const LoginForm = () => {
           </div>
         </motion.div>
         
+        {/* Error message */}
+        {error && (
+          <motion.div
+            className="p-3 mb-4 text-sm text-red-400 bg-red-900/30 rounded-lg"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {error}
+          </motion.div>
+        )}
+        
         {/* Signup Link */}
         <motion.div 
           className="text-center text-sm mb-4"
@@ -245,7 +268,11 @@ const LoginForm = () => {
         >
           <motion.button
             type="button"
-            onClick={() => console.log('Google sign-in clicked')}
+            onClick={() => {
+              // Note: Supabase OAuth will be implemented in future updates
+              console.log('Google sign-in clicked');
+              setError('Google sign-in will be available soon.');
+            }}
             className="w-full flex items-center justify-center py-3 px-4 rounded-lg font-medium text-gray-800 bg-white hover:bg-gray-100 transition-colors shadow-lg cursor-pointer"
             variants={buttonVariants}
             initial="initial"
