@@ -5,6 +5,7 @@ import Services from "./Services";
 import Contact from "./Contact";
 import Login from "./Login";
 import Signup from "./Signup";
+import Dashboard from "./Dashboard";
 
 export {
   Home,
@@ -14,5 +15,6 @@ export {
   Contact,
   Login,
   Signup,
+  Dashboard,
 }
 

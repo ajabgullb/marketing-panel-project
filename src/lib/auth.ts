@@ -13,6 +13,29 @@ export type SignInCredentials = {
   password: string;
 };
 
+// Function to create a user profile after they've authenticated
+export const createUserProfile = async (userId: string, email: string, fullName?: string) => {
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .insert({
+        id: userId,
+        email: email,
+        full_name: fullName,
+      });
+
+    if (error) {
+      console.error('Error creating user profile:', error);
+      return { success: false, error };
+    }
+    
+    return { success: true, data };
+  } catch (e) {
+    console.error('Exception during profile creation:', e);
+    return { success: false, error: e };
+  }
+};
+
 export const signUp = async ({ email, password, fullName }: SignUpCredentials) => {
   try {
     console.log('Starting signup process for:', email);
@@ -43,29 +66,6 @@ export const signUp = async ({ email, password, fullName }: SignUpCredentials) =
   } catch (e) {
     console.error('Unhandled exception during signup:', e);
     throw e;
-  }
-};
-
-// Function to create a user profile after they've authenticated
-export const createUserProfile = async (userId: string, email: string, fullName?: string) => {
-  try {
-    const { data, error } = await supabase
-      .from('users')
-      .insert({
-        id: userId,
-        email: email,
-        full_name: fullName,
-      });
-
-    if (error) {
-      console.error('Error creating user profile:', error);
-      return { success: false, error };
-    }
-    
-    return { success: true, data };
-  } catch (e) {
-    console.error('Exception during profile creation:', e);
-    return { success: false, error: e };
   }
 };
 

@@ -8,7 +8,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 document.documentElement.classList.add('dark')
 
 import App from './App.tsx'
-import { Home, About, Blogs, Services, Contact, Login, Signup } from "./pages/index.ts"
+import { Home, About, Blogs, Services, Contact, Login, Signup, Dashboard } from "./pages/index.ts"
+import { ProtectedRoute } from './components/index.ts'
 import { Provider } from 'react-redux'
 import store from './store/store.ts'
 
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
       { path: "/contact", element: <Contact />},
       { path: "/signup", element: <Signup />},
       { path: "/login", element: <Login />},
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        )
+      }
     ]
   }
 ])
