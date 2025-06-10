@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { signIn, SignInCredentials } from '../../lib/auth';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
 
 // Define form schema with Zod
 const formSchema = z.object({
@@ -37,6 +39,7 @@ const LoginForm = () => {
 
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -48,7 +51,7 @@ const LoginForm = () => {
         password: data.password
       };
       
-      await signIn(credentials);
+      await signIn(credentials, dispatch);
       
       // If we got here, the login was successful and the Redux store has been updated
       setSubmitSuccess(true);

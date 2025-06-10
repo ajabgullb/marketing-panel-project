@@ -3,7 +3,7 @@ import { Header, Footer } from "./components/index"
 
 export const App = () => {
   const location = useLocation()
-  const authRoutes = ["/login", "/signup"]
+  const authRoutes = ["/login", "/signup", "/dashboard"]
 
   if (authRoutes.includes(location.pathname)) {
     return (

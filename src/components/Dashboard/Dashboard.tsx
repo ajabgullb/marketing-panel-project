@@ -1,8 +1,10 @@
 
 const Dashboard = () => {
+  console.log("The Dashboard Component")
+
   return (
     <div>
-      Dashboard
+      <h1>Dashboard</h1>
     </div>
   )
 }

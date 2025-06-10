@@ -1,5 +1,6 @@
 import { supabase } from './supabase';
 import store from '../store/store';
+import { AppDispatch } from '../store/store';
 import { login, logout } from '../store/slices/authSlice';
 
 export type SignUpCredentials = {
@@ -69,7 +70,7 @@ export const signUp = async ({ email, password, fullName }: SignUpCredentials) =
   }
 };
 
-export const signIn = async ({ email, password }: SignInCredentials) => {
+export const signIn = async ({ email, password }: SignInCredentials, dispatch: AppDispatch) => {
   try {
     console.log('Attempting to sign in:', email);
     
@@ -105,12 +106,12 @@ export const signIn = async ({ email, password }: SignInCredentials) => {
           
           if (profileResult.success && profileResult.data) {
             // Update Redux store with user data
-            store.dispatch(login({
+            dispatch(login({
               authStatus: true,
               userData: {
                 id: data.user.id,
-                email: data.user.email,
-                fullName: fullName,
+                email: data.user.email || '',
+                fullName: fullName || '',
               }
             }));
           }
@@ -119,12 +120,12 @@ export const signIn = async ({ email, password }: SignInCredentials) => {
         }
       } else {
         // User profile exists, update Redux store
-        store.dispatch(login({
+        dispatch(login({
           authStatus: true,
           userData: {
             id: userData.id,
-            email: userData.email,
-            fullName: userData.full_name,
+            email: userData.email || '',
+            fullName: userData.full_name || '',
           }
         }));
       }

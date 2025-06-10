@@ -2,22 +2,17 @@ import { useNavigate } from "react-router-dom"
 import { Button } from "../ui/button"
 import { User } from "lucide-react"
 import { useSelector } from "react-redux"
-
-interface UserState {
-  auth: {
-    authStatus: boolean
-  }
-}
+import { RootState } from "../../store/store"
 
 const AuthComponents = ({ className }: any) => {
   const navigate = useNavigate()
-  const authStatus = useSelector((state: UserState) => state.auth.authStatus)
+  const authStatus = useSelector((state: RootState) => state.auth.authStatus)
 
   return (
     <div className={`flex items-center ${className}`}>
       {authStatus ? (
         <button
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/dashboard")}
           className="p-2 rounded-full hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
           aria-label="Profile"
         >
