@@ -7,6 +7,7 @@ import Contact from "./Contact/Contact"
 import Home from "./Home/Home"
 import About from "./About/About"
 import Dashboard from "./Dashboard/Dashboard"
+import Blogs from "./Blogs/Blogs"
 
 import ProtectedRoute from "./ProtectedRoute"
 
@@ -20,6 +21,7 @@ export {
   Home,
   About,
   Dashboard,
+  Blogs,
 
   ProtectedRoute,
 }

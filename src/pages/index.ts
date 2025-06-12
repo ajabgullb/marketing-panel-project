@@ -6,6 +6,7 @@ import Contact from "./Contact";
 import Login from "./Login";
 import Signup from "./Signup";
 import Dashboard from "./Dashboard";
+import BlogPost from "./BlogPost";
 
 export {
   Home,
@@ -16,5 +17,5 @@ export {
   Login,
   Signup,
   Dashboard,
+  BlogPost,
 }
-

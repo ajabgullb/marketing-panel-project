@@ -1,11 +1,11 @@
 import AboutCompany from "./AboutCompany"
-import AboutFounder from "./AboutFounder"
+import AboutTeam from "./AboutTeam"
 
 const About = () => {
   return (
     <div>
       <AboutCompany />
-      <AboutFounder />
+      <AboutTeam />
     </div>
   )
 }

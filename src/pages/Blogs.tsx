@@ -1,9 +1,9 @@
-import { Container } from "@/components/index"
+import { Container, Blogs as BlogsComponent } from "@/components/index"
 
 const Blogs = () => {
   return (
     <Container>
-      Blogs
+      <BlogsComponent />
     </Container>
   )
 }

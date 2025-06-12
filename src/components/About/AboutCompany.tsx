@@ -37,21 +37,75 @@ const GridContainer: FC<GridContainerProps> = ({ children, className = '' }) => 
   </div>
 );
 
-const Card: FC<CardProps> = ({ title, description, icon: Icon, iconColor, delay }) => (
-  <motion.div
-    className="h-full flex flex-col items-center text-center bg-black/50 backdrop-blur-sm rounded-xl border border-opacity-10 border-white p-10 transition-all duration-300 hover:border-opacity-30 hover:shadow-lg hover:shadow-purple-500/20 hover:bg-black/70"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay }}
-  >
-    <div className={`flex items-center justify-center p-4 mb-8 rounded-full ${iconColor} transition-transform duration-300 group-hover:scale-110`}>
-      <Icon className="w-10 h-10" />
-    </div>
-    <h3 className="text-2xl font-bold text-white mb-6">{title}</h3>
-    <p className="text-gray-300 text-lg leading-relaxed mb-6">{description}</p>
-  </motion.div>
-);
+const Card: FC<CardProps> = ({ title, description, icon: Icon, iconColor, delay }) => {
+  // Extract the color from the iconColor class for the glow effect
+  const glowColor = iconColor.includes('purple') ? '#9c27b0' : 
+                    iconColor.includes('blue') ? '#3f51b5' :
+                    iconColor.includes('pink') ? '#e91e63' :
+                    '#4caf50'; // default to green
+
+  return (
+    <motion.div 
+      className="relative group h-full"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0,
+        transition: { 
+          delay,
+          duration: 0.5,
+          ease: 'easeOut'
+        }
+      }}
+      viewport={{ once: true }}
+    >
+      {/* Glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+           style={{
+             background: `radial-gradient(circle at center, ${glowColor}20 0%, transparent 70%)`,
+             filter: 'blur(20px)',
+             zIndex: -1,
+             borderRadius: '0.75rem',
+             transform: 'translateY(10px) scale(1.02)'
+           }}
+      />
+      
+      <motion.div
+        className="h-full flex flex-col items-center text-center bg-black/50 backdrop-blur-sm rounded-xl border border-opacity-10 border-white p-10 relative z-10"
+        whileHover={{
+          y: -8,
+          borderColor: `${glowColor}80`,
+          boxShadow: `0 10px 25px -5px ${glowColor}30, 0 8px 10px -6px ${glowColor}30`,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)'
+        }}
+        transition={{ 
+          duration: 0.2, 
+          ease: 'easeOut',
+          type: 'spring',
+          stiffness: 300,
+          damping: 15
+        }}
+      >
+        <motion.div 
+          className={`flex items-center justify-center p-4 mb-8 rounded-full ${iconColor} relative z-10`}
+          whileHover={{ 
+            scale: 1.15,
+            rotate: '2deg'
+          }}
+          transition={{ 
+            type: 'spring',
+            stiffness: 500,
+            damping: 10
+          }}
+        >
+          <Icon className="w-10 h-10" />
+        </motion.div>
+        <h3 className="text-2xl font-bold text-white mb-6">{title}</h3>
+        <p className="text-gray-300 text-lg leading-relaxed mb-6">{description}</p>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const AboutCompany: FC = () => {
   const navigate = useNavigate();
@@ -103,7 +157,7 @@ const AboutCompany: FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-lg text-center text-gray-300 max-w-4xl mx-auto mb-16 leading-relaxed relative z-10">
+            <p className="text-lg text-center text-gray-300 max-w-4xl mx-auto mb-16 mt-7 leading-relaxed relative z-10">
               Empowering businesses with innovative marketing solutions since 2023. Our mission is to help brands connect with their audience through data-driven strategies and creative excellence.
             </p>
           </motion.div>
