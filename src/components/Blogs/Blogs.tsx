@@ -8,7 +8,8 @@ const Blogs = () => {
 
   return (
     <Box sx={{ 
-      py: 12,
+      pt: 6,
+      pb: 12,
       backgroundColor: 'black',
       minHeight: '100vh',
       position: 'relative',
@@ -68,7 +69,7 @@ const Blogs = () => {
           <Typography 
             variant="subtitle1" 
             sx={{
-              color: 'text.secondary',
+              color: 'rgba(255, 255, 255, 0.8)',
               maxWidth: '700px',
               mx: 'auto',
               fontSize: '1.1rem',

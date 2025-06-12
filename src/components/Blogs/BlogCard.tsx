@@ -188,12 +188,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
                   alt={author}
                   sx={{ width: 32, height: 32 }}
                 />
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="white">
                   {author}
                 </Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="white">
                   {formattedDate}
                 </Typography>
                 <ArrowForward sx={{ fontSize: '1rem', color: 'rgba(0, 204, 255, 0.7)' }} />
