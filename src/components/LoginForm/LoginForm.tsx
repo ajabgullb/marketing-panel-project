@@ -22,6 +22,7 @@ type FormData = z.infer<typeof formSchema>;
 
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,7 +40,6 @@ const LoginForm = () => {
 
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
